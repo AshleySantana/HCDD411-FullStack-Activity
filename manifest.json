@@ -1,0 +1,21 @@
+{
+    "name": "MUSEseum",
+    "short_name": "App",
+    "description": "Art Curator Design Portal",
+    "start_url": "/",
+    "display": "standalone",
+    "theme_color": "#96BEE6",
+    "icons": [
+        {
+            "src": "images/logo.png",
+            "sizes": "225x225",
+            "purpose":"any"
+        },
+        {
+            "src": "images/lion.png",
+            "sizes" : "200x200",
+            "purpose":"any"
+        }
+        
+    ]
+}
