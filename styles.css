@@ -3,6 +3,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  justify-content: flex-start;
   height: 100vh;
   background-color: #f0f0f0;
 }
@@ -43,12 +44,104 @@
   font-size: 36px;
   margin-left: 50px;
 }
+.welcomeBanner {
+  position: sticky;
+  top: 0;
+  padding: 10px;
+  text-align: center;
+  color: rgb(0, 0, 0);
+  font-size: 50px;
+  z-index: 10;
+  width: 100%;
+}
+.dashboard {
+  margin-top: 20px;
+  width: 80%;
+  height: 80%;
+  background-color: #ffffff;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+/* Up */
+.deadlineChart {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 20px;
+}
+
+/* Main card */
+.deadlineCard {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  height: 350px; /* total height */
+  background-color: #e0e0e0;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-sizing: border-box;
+  overflow: hidden;
+  padding: 10px;
+}
+
+/* Top fixed area */
+.dlTop {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Scrollable list */
+.dlList {
+  flex: 1;
+  overflow-y: auto;
+  background-color: #f5f5f5;
+  border-radius: 6px;
+  padding: 6px;
+  margin-top: 8px;
+  min-height: 0;
+}
+
+/* Remove list bullets and spacing */
+.dlList ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Input + Add button row */
+.inputBar {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+/* Save/Load buttons row */
+.buttonBar {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+/* Optional scrollbar styling */
+.dlList::-webkit-scrollbar {
+  width: 6px;
+}
+.dlList::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 3px;
+}
+.dlList::-webkit-scrollbar-thumb:hover {
+  background-color: #555;
+}
 
 /* Style page content - use this if you want to push the page content to the right when you open the side navigation */
 #main {
   transition: margin-left 0.5s;
   padding: 20px;
-  margin-left:250px ;
+  margin-left: 250px;
 }
 
 /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
