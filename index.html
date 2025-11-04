@@ -23,34 +23,37 @@
     <div id="main" class="container">
       <h1 class="welcomeBanner">Welcome to Your MUSEuem</h1>
       <p>This is a simple HTML page with linked CSS for styling.</p>
+       <!-- This is showing where the Exbit Progress will go and Deadline -->
     <div class="dashboard">
-        <!-- This is showing where the Exbit Progress will go and Deadline -->
-         <div class="deadlineCard">
-    <div class="dlTop">
-      <h2>Deadlines</h2>
-      <div class="inputBar">
-        <label for="module">Add Deadline:</label>
-        <input type="text" id="module" />
-        <button id="btn_add" class="tufte-button">Add!</button>
-      </div>
-      <div class="buttonBar">
-        <button id="btn_save" class="tufte-button">Save</button>
-        <button id="btn_load" class="tufte-button">Load</button>
-      </div>
-    </div>
-    <div class="dlList">
+      <div class = "galleryCard">
+        <h1>Gallery View</h1>
+        <div class="galleryWrapper">
+        </div>
+        </div>
+  <!-- end of gallery  -->
+        <div class="deadlineCard">
+        <!-- Fixed top section -->
+        <div class="dlTop">
+          <h2>Deadlines</h2>
+
+          <div class="inputBar">
+            <label for="module">Add Deadline:</label>
+            <input type="text" id="module" />
+            <button id="btn_add" class="tufte-button">Add!</button>
+          </div>
+
+          <div class="buttonBar">
+            <button id="btn_save" class="tufte-button">Save</button>
+            <button id="btn_load" class="tufte-button">Load</button>
+          </div>
+        </div>
+         <div class="dlList">
       <ul id="modules"></ul>
     </div>
   </div>
 </div>
-      </div>
 
     </div>
-
-
-
-
-
     <script src="script.js" defer></script>
   </body>
 </html>

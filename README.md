@@ -10,3 +10,6 @@
         3. Open tabs for research 
 ## Functionally  
    1. Create Exhibition - takes the notes that the curator writes -> Open AI look for revelnt peices -> Displays that to the user -> They are able to select what they want-> 
+   2. Have a methood that adds art work, have user be able to compelty delete, PUT is changing the name 
+   3. Chris is working on deadlines page and fixing home pag issues 
+   4. Ashley is working on exhbits 
