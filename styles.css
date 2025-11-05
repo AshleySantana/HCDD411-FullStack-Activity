@@ -192,6 +192,62 @@
   padding: 20px;
   margin-left: 250px;
 }
+/* All the changed for the deadlines page */
+.dlInputCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding: 20px;
+  width: 100%;
+  max-width: 600px; /*If you get rid of this it fills top */
+  margin: 0 auto;
+  background-color: rgb(151, 151, 151);
+}
+
+.tdlbanner {
+  text-align: center;
+  width: 100%;
+  margin: 0 0 16px 0;
+}
+
+.inputBar {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  width: 100%;
+  justify-content: center;
+}
+
+.categoryBar {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  width: 100%;
+  justify-content: center;
+}
+.tdlbanner { /* Might need to add a @media so the text get bigger */
+  font-size: 100px;
+  margin: 0;
+}
+.inputBar label,
+.categoryBar label {
+    font-size: 36px;
+    font-weight: 500;
+    color: #000000;
+    margin-right: 10px;
+}
+.inputBar input,
+.categoryBar select {
+    padding: 8px 12px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    min-width: 200px;  
+    height: 36px;     
+    box-sizing: border-box;
+}
+/* the start of the elments */
 
 /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
 @media screen and (max-height: 450px) {
@@ -212,6 +268,37 @@
   .deadlineCard {
     width: 100%;
     max-width: none;
+  }
+}
+ /*  Prevents the text from breaking through the contaitner  */
+@media screen and (max-width: 768px) {
+  .sidenav {
+    width: 0; 
+  }
+  
+  #main {
+    margin-left: 0; /* Gets rid of margin when sidenav is hidden */
+  }
+  /* fixes text sizes */
+  .tdlbanner {
+    font-size: 60px;
+    padding: 0 20px; /* Add some padding to prevent text touching edges */
+  }
+
+  .inputBar label,
+  .categoryBar label {
+    font-size: 24px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .tdlbanner {
+    font-size: 40px; /* Just incase of smaller screens */
+  }
+
+  .inputBar label,
+  .categoryBar label {
+    font-size: 18px;
   }
 }
 /* End of header info */

@@ -1,4 +1,4 @@
-function openNav() {
+function openNav() { //needs to be edited 
   document.getElementById("mySidenav").style.width = "250px";
   document.getElementById("main").style.marginLeft = "250px";
 }
@@ -84,3 +84,6 @@ document.querySelector("#btn_save")
 document.querySelector("#btn_load")
     .addEventListener("click", loadModule);
     // end of deadlines feature
+// Deadlines Page feature 
+// when the submit button is clicked a new element need to br created 
+// it should take the inpput of rthe 

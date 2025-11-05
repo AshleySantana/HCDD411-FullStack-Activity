@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MUSseum</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="manifest" href="manifest.json" />
+  </head>
+  <body>
+    <!-- Beginning of header  -->
+    <div id="mySidenav" class="sidenav">
+      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"
+        >&times;</a>
+      <a href="index.html">Home</a>
+      <a href="#">Your Exhibit</a>
+      <a href="#">Settings</a>
+      <a href="deadlines.html">Deadlines </a>
+    </div>
+    <!-- end of header -->
+    <div id="main" class="container">
+        <p>This is a simple HTML page with linked CSS for styling.</p>
+        <div class ="dlInputCard">
+      <h1 class="tdlbanner">To-Do List </h1> <!-- May need to change the name to avoid text being styled  -->
+    <!-- Would have to connect any items that are listed here to the home page  -->
+        <div class="inputBar">
+            <label for="module">Add Deadline:</label>
+            <input type="text" id="module" />
+            <button id="btn_add" class="tufte-button">Add!</button>
+            </div>
+        <div class="categoryBar">
+        <label for="category">Category:</label>
+        <select id="category" name="category" aria-label="Category">
+            <option value="" disabled selected>Drop down</option>
+            <option value="art">Art</option> <!-- Add realistic ones --->
+            <option value="history">History</option>
+            <option value="science">Science</option>
+        </select>
+        </div>
+        <div class = "todosection">
+            <!-- This need to be a list elemnt that is created when someone clicks submit  --->
+        </div>
+
+      
+    </div>
+    <script src="script.js" defer></script>
+  </body>
+</html>
