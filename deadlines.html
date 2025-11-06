@@ -19,7 +19,6 @@
     </div>
     <!-- end of header -->
     <div id="main" class="container">
-        <p>This is a simple HTML page with linked CSS for styling.</p>
         <div class ="dlInputCard">
       <h1 class="tdlbanner">To-Do List </h1> <!-- May need to change the name to avoid text being styled  -->
     <!-- Would have to connect any items that are listed here to the home page  -->
@@ -37,12 +36,22 @@
             <option value="science">Science</option>
         </select>
         </div>
-        <div class = "todosection">
-            <!-- This need to be a list elemnt that is created when someone clicks submit  --->
-        </div>
-
-      
     </div>
+     <div class = "todosection">
+            <!-- This need to be a list elemnt that is created when someone clicks submit  --->
+            <ol id="todomodules">
+            <li> <div class="lstElm"> <!-- This has to be called when a new list item is made   -->
+            <div class = "circle">A</div>   <!-- letter, icon, or image -->
+            <div class="ltext">
+                <span class="title">Deadline title</span>
+                <div class="meta">Due: 2025-11-10</div>
+            </div>
+            <input type="checkbox" id="status" name="status" checked />
+    <label for="status"></label>
+        </div></li>
+            </ol>
+        </div>
+        
     <script src="script.js" defer></script>
   </body>
 </html>

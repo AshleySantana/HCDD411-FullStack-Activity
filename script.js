@@ -1,11 +1,12 @@
-function openNav() { //needs to be edited 
+function openNav() { //Open nav Bar (Not working Yet )
   document.getElementById("mySidenav").style.width = "250px";
   document.getElementById("main").style.marginLeft = "250px";
 }
-function closeNav() {
+function closeNav() { //Close nav Bar: Side bar 
   document.getElementById("mySidenav").style.width = "0";
   document.getElementById("main").style.marginLeft = "0";
 }
+//end of side bar code
 
 // Moved call to script.js
 
@@ -85,5 +86,7 @@ document.querySelector("#btn_load")
     .addEventListener("click", loadModule);
     // end of deadlines feature
 // Deadlines Page feature 
+
+//Outline for deadlines page 
 // when the submit button is clicked a new element need to br created 
 // it should take the inpput of rthe 
