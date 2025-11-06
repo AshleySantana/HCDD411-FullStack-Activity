@@ -87,23 +87,50 @@ document.querySelector("#btn_load").addEventListener("click", loadModule);
 
 // Exhibit page JS Code
 
-function createExhibit() {
+function createExhibit(){
   // calling all of my info
-  let exhibitName = document.querySelector("#exhibitInputName").value;
-  let exhibitTheme = document.querySelector("#exhibitInputTheme").value;
-  let exhibitDateCreated = document.querySelector(
-    "#exhibitInputDateCreated"
-  ).value;
+  let exhibitName = document.querySelector('#exhibitInputName').value
+  let exhibitTheme = document.querySelector('#exhibitInputTheme').value
+  let exhibitDateCreated = document.querySelector('#exhibitInputDateCreated').value
+  const data = {
+      name: exhibitName,
+      theme: exhibitTheme,
+      date: exhibitDateCreated
+  }
+  sendData(data)
+  let newElement = document.createElement("div")
 
-  let newElement = document.createElement("div");
+  let textName = document.createElement("input")
+  textName.classList.add("exhibitName")
+  textName.textContent = exhibitName
 
-  let textName = document.createTextNode(exhibitName);
-  let textTheme = document.createTextNode(exhibitTheme);
-  let textDateCreated = document.createTextNode(exhibitDateCreated);
+  let textTheme = document.createElement("input")
+  textTheme.classList.add("exhibitTheme")
+  textTheme.textContent = exhibitTheme
 
-  newElement.appendChild(textName);
-  newElement.appendChild(textTheme);
-  newElement.appendChild(textDateCreated);
+  let textDateCreated = document.createElement("input")
+  textDateCreated.classList.add("exhibitDateCreated")
+  textDateCreated.value = exhibitDateCreated
 
-  document.querySelector("#exhibitsWrapper").appendChild(newElement);
+  let deleteButton = document.createElement("button")
+  deleteButton.textContent = "Delete"
+  deleteButton.classList.add("delete")
+
+  let editButton = document.createElement("button")
+  editButton.textContent = "Edit"
+  editButton.classList.add("edit")
+  
+  newElement.appendChild(textName)
+  newElement.appendChild(textTheme)
+  newElement.appendChild(textDateCreated)
+  newElement.appendChild(editButton)
+  newElement.appendChild(deleteButton)
+
+  deleteButton.addEventListener("click",()=> {
+      deleteButton.parentElement.remove()
+  })
+  
+  
+  document.querySelector("#exhibitsWrapper").appendChild(newElement)
+
 }
