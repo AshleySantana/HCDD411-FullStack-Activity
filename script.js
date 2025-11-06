@@ -92,21 +92,16 @@ function createExhibit(){
   let exhibitName = document.querySelector('#exhibitInputName').value
   let exhibitTheme = document.querySelector('#exhibitInputTheme').value
   let exhibitDateCreated = document.querySelector('#exhibitInputDateCreated').value
-  const data = {
-      name: exhibitName,
-      theme: exhibitTheme,
-      date: exhibitDateCreated
-  }
-  sendData(data)
+
   let newElement = document.createElement("div")
 
   let textName = document.createElement("input")
   textName.classList.add("exhibitName")
-  textName.textContent = exhibitName
+  textName.value = exhibitName
 
   let textTheme = document.createElement("input")
   textTheme.classList.add("exhibitTheme")
-  textTheme.textContent = exhibitTheme
+  textTheme.value = exhibitTheme
 
   let textDateCreated = document.createElement("input")
   textDateCreated.classList.add("exhibitDateCreated")
@@ -115,22 +110,23 @@ function createExhibit(){
   let deleteButton = document.createElement("button")
   deleteButton.textContent = "Delete"
   deleteButton.classList.add("delete")
-
-  let editButton = document.createElement("button")
-  editButton.textContent = "Edit"
-  editButton.classList.add("edit")
   
   newElement.appendChild(textName)
   newElement.appendChild(textTheme)
   newElement.appendChild(textDateCreated)
-  newElement.appendChild(editButton)
   newElement.appendChild(deleteButton)
 
   deleteButton.addEventListener("click",()=> {
       deleteButton.parentElement.remove()
   })
-  
-  
-  document.querySelector("#exhibitsWrapper").appendChild(newElement)
 
+  document.querySelector("#exhibitsWrapper").appendChild(newElement)
 }
+
+
+const data = {
+  name: exhibitName,
+  theme: exhibitTheme,
+  date: exhibitDateCreated
+}
+sendData(data)
