@@ -1,5 +1,6 @@
 const express = require("express");
 const path = require("path");
+const fs = require("fs");//allows files to be acessed 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
@@ -16,6 +17,7 @@ app.post("/api/exhibition", (req, res) => {
 app.post("/api/artwork", (req, res) => {
   // Logic to add artwork
   res.json({ message: "Artwork added successfully" });
+  //fs.writeFileSync('artwork.json', JSON.stringify(req.body)); //saves the artwork to a text file
 });
 app.delete("/api/artwork/:id", (req, res) => {
   // Logic to delete artwork by id
