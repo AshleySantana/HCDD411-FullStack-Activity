@@ -7,8 +7,6 @@ function closeNav() {
   document.getElementById("main").style.marginLeft = "0";
 }
 
-// Moved call to script.js
-
 // Deadlines  feature
 const addAListItem = (text) => {
     /*
@@ -74,16 +72,40 @@ const loadModule = (event) => {
     }); 
 };
 
-document.querySelector("#btn_add")
-    .addEventListener("click", addModule);
+// document.querySelector("#btn_add")
+//     .addEventListener("click", addModule);
 
+// document.querySelector("#btn_save")
+//     .addEventListener("click", saveModule);
 
-document.querySelector("#btn_save")
-    .addEventListener("click", saveModule);
-
-document.querySelector("#btn_load")
-    .addEventListener("click", loadModule);
+// document.querySelector("#btn_load")
+//     .addEventListener("click", loadModule);
     // end of deadlines feature
 // Deadlines Page feature 
 // when the submit button is clicked a new element need to br created 
 // it should take the inpput of rthe 
+
+
+
+// Exhibit page JS Code
+
+function createExhibit(){
+    // calling all of my info
+    let exhibitName = document.querySelector('#exhibitInputName').value
+    let exhibitTheme = document.querySelector('#exhibitInputTheme').value
+    let exhibitDateCreated = document.querySelector('#exhibitInputDateCreated').value
+
+    let newElement = document.createElement("div")
+
+    let textName = document.createTextNode(exhibitName)
+    let textTheme = document.createTextNode(exhibitTheme)
+    let textDateCreated = document.createTextNode(exhibitDateCreated)
+
+    newElement.appendChild(textName)
+    newElement.appendChild(textTheme)
+    newElement.appendChild(textDateCreated)
+
+    document.querySelector("#exhibitsWrapper").appendChild(newElement)
+
+
+}

@@ -17,31 +17,31 @@
           >&times;</a
         >
         <a href="index.html">Home</a>
-        <a href="exhibitProjects.html">Exhibit Projects</a>
-        <a>Deadlines </a>
-        <a>Settings</a>
+        <a href="exhibitProjects.html">Your Exhibit</a>
+        <a href="deadlines.html">Deadlines </a>
+        <a href="">Settings</a>
       </div>
       <!-- end of header -->
     
       <h1>Your Exhibits</h1>
 
-      <div class="exhibitsWrapper">
-        <div class="exhibitCard">
-            <p>Colonial History</p>
-            <p>Aug 9, 2025</p>
-        </div>
-        <div class="exhibitCard">
-          <p>Gothic Art</p>
-          <p>Aug 19, 2025</p>
-        </div>
-        <div class="exhibitCard">
-          <p>Cherokee History</p>
-          <p>Aug 2, 2025</p>
-        </div>
-      </div>
+      <label for="exhibitInputName">Name: </label>
+      <input type="text" id="exhibitInputName"></input>
+      <br>
+
+      <label for="exhibitInputTheme">Theme: </label>
+      <input type="text" id="exhibitInputTheme"></input>
+      <br>
+
+      <label for="exhibitInputDateCreated">Date Created: </label>
+      <input type="text" id="exhibitInputDateCreated"></input>
+      <br>
+      
+      <button onclick="createExhibit()" id="exhibitCreateButton">Create!</button>
+
+      <div class="exhibitsWrapper" id="exhibitsWrapper"></div>
 
     </div>
-
     <script src="script.js" defer></script>
   </body>
 </html>

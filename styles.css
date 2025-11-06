@@ -249,6 +249,29 @@
 }
 /* the start of the elments */
 
+
+/* EXHIBIT CSS CODE */
+.exhibitsWrapper{
+  display: flex;
+  flex-wrap: wrap;         
+  gap: 1rem;               
+  padding: 1rem;
+  justify-content: center;
+}
+
+#exhibitsWrapper div {
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  height: 90%; /* total height */
+  background-color: #e0e0e0;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-sizing: border-box;
+  overflow: hidden;
+  padding: 10px;
+}
+
 /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
 @media screen and (max-height: 450px) {
   .sidenav {
@@ -302,18 +325,3 @@
   }
 }
 /* End of header info */
-
-.page{
-  display: flex;
-}
-.exhibitsWrapper{
-  display: flex;
-  align-items: center;
-}
-.exhibitCard{
-  border: black solid;
-  border-radius: 0.4em;
-  padding: 0.5em;
-  font-family: Georgia, 'Times New Roman', Times, serif;
-
-}
