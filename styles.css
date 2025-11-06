@@ -261,6 +261,9 @@
   padding: 8px;
   border-bottom: 1px solid #ccc;
 }
+.lstElm:hover {
+  background-color: #ccb;
+}
 .circle {/* Circle used for labled */
   width: 100px;  
   height: 100px; /* Set the same height as the width for a perfect circle */
