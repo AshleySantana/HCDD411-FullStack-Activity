@@ -1,5 +1,7 @@
-.body{
-  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+.body {
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  margin: 0;
+  padding: 0; /* added to remove gap */
 }
 .container {
   display: flex;
@@ -8,6 +10,8 @@
   justify-content: center;
   justify-content: flex-start;
   height: 100vh;
+  margin: 0; /* added to remove gap */
+  padding: 0;
 }
 /* The side navigation menu */
 .sidenav {
@@ -21,8 +25,8 @@
   overflow-x: hidden; /* Disable horizontal scroll */
   padding-top: 60px; /* Place content 60px from the top */
   transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
-  
-  display:block;
+
+  display: block;
 }
 
 /* The navigation menu links */
@@ -48,6 +52,20 @@
   font-size: 36px;
   margin-left: 50px;
 }
+.openbtn {
+  position: fixed; /* Overlay on top of everything */
+  top: 20px;
+  left: 20px;
+  font-size: 18px;
+  background-color: #111;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  z-index: 1000; /* Ensure it's above all other content */
+  cursor: pointer;
+}
+
 .welcomeBanner {
   position: sticky;
   top: 0;
@@ -166,13 +184,13 @@
 }
 .dashboard {
   display: flex;
-  flex-direction: row;  /* arrange items horizontally */
-  gap: 20px;           /* space between cards */
+  flex-direction: row; /* arrange items horizontally */
+  gap: 20px; /* space between cards */
   justify-content: center; /* center the cards horizontally */
   align-items: flex-start; /* align cards to the top */
   width: 100%;
-  max-width: 1200px;   /* prevent stretching too wide */
-  margin: 0 auto;      /* center the dashboard itself */
+  max-width: 1200px; /* prevent stretching too wide */
+  margin: 0 auto; /* center the dashboard itself */
   padding: 20px;
   background-color: #ffffff;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -181,16 +199,17 @@
 /* Update card styles to make them more consistent */
 .galleryCard,
 .deadlineCard {
-  flex: 1;            /* make cards share available space equally */
-  min-width: 300px;   /* prevent cards from becoming too narrow */
-  max-width: 500px;   /* prevent cards from becoming too wide */
-  margin: 0;          /* remove any default margins */
+  flex: 1; /* make cards share available space equally */
+  min-width: 300px; /* prevent cards from becoming too narrow */
+  max-width: 500px; /* prevent cards from becoming too wide */
+  margin: 0; /* remove any default margins */
 }
 /* Style page content - use this if you want to push the page content to the right when you open the side navigation */
 #main {
   transition: margin-left 0.5s;
   padding: 2px;
   margin-left: 250px;
+  position: relative;
 }
 /* All the changed for the deadlines page */
 .dlInputCard {
@@ -200,7 +219,7 @@
   gap: 16px;
   padding: 30px;
   width: 100%;
- /* max-width: 600px;  If you get rid of this it fills top */
+  /* max-width: 600px;  If you get rid of this it fills top */
   margin: 0 auto;
   background-color: rgb(151, 151, 151);
 }
@@ -226,33 +245,33 @@
   width: 100%;
   justify-content: center;
 }
-.tdlbanner { 
+.tdlbanner {
   font-size: 100px;
   margin: 0;
 }
 .inputBar label,
 .categoryBar label {
-    font-size: 36px;
-    font-weight: 500;
-    color: #000000;
-    margin-right: 10px;
+  font-size: 36px;
+  font-weight: 500;
+  color: #000000;
+  margin-right: 10px;
 }
 .inputBar input,
 .categoryBar select {
-    padding: 8px 12px;
-    font-size: 14px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    min-width: 200px;  
-    height: 36px;     
-    box-sizing: border-box;
+  padding: 8px 12px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  min-width: 200px;
+  height: 36px;
+  box-sizing: border-box;
 }
 /* the start of the elments */
 .todosection {
   width: 100%; /* div that lst items are in, makes it full up to 80% */
   margin: 0 auto;
 }
-.lstElm{
+.lstElm {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -264,13 +283,14 @@
 .lstElm:hover {
   background-color: #ccb;
 }
-.circle {/* Circle used for labled */
-  width: 100px;  
+.circle {
+  /* Circle used for labled */
+  width: 100px;
   height: 100px; /* Set the same height as the width for a perfect circle */
   background-color: blue; /* Choose a background color for your circle */
   border-radius: 50%; /* This is the key property to make it round */
-  flex: 0 0 auto;           /* ADDED don't grow or shrink */
-  display: flex;            /* center any content inside */
+  flex: 0 0 auto; /* ADDED don't grow or shrink */
+  display: flex; /* center any content inside */
   align-items: center;
   justify-content: center;
   color: #fff;
@@ -278,12 +298,11 @@
   font-size: 14px;
 }
 
-
 /* EXHIBIT CSS CODE */
-.exhibitsWrapper{
+.exhibitsWrapper {
   display: flex;
-  flex-wrap: wrap;         
-  gap: 1rem;               
+  flex-wrap: wrap;
+  gap: 1rem;
   padding: 1rem;
   justify-content: center;
 }
@@ -310,24 +329,25 @@
     font-size: 18px;
   }
 }
-@media screen and (max-width: 768px) {/* Add for the dashboard panel */
+@media screen and (max-width: 768px) {
+  /* Add for the dashboard panel */
   .dashboard {
     flex-direction: column; /* stack cards vertically on smaller screens */
-    align-items: stretch;   /* stretch cards to full width */
+    align-items: stretch; /* stretch cards to full width */
   }
-  
+
   .galleryCard,
   .deadlineCard {
     width: 100%;
     max-width: none;
   }
 }
- /*  Prevents the text from breaking through the contaitner  */
+/*  Prevents the text from breaking through the contaitner  */
 @media screen and (max-width: 768px) {
   .sidenav {
-    width: 0; 
+    width: 0;
   }
-  
+
   #main {
     margin-left: 0; /* Gets rid of margin when sidenav is hidden */
   }
