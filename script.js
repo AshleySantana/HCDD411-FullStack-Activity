@@ -1,3 +1,5 @@
+import {addDeadline} from './client'
+
 function openNav() {
   //Open nav Bar (Not working Yet )
   document.getElementById("mySidenav").style.width = "250px";
@@ -89,9 +91,17 @@ document.querySelector("#btn_add").addEventListener("click", addModule);
 
 function createExhibit(){
   // calling all of my info
+
+
   let exhibitName = document.querySelector('#exhibitInputName').value
   let exhibitTheme = document.querySelector('#exhibitInputTheme').value
   let exhibitDateCreated = document.querySelector('#exhibitInputDateCreated').value
+  
+  let data = {
+    name: exhibitName,
+    theme: exhibitTheme,
+    date: exhibitDateCreated
+  }
 
   let newElement = document.createElement("div")
 
@@ -123,12 +133,6 @@ function createExhibit(){
   document.querySelector("#exhibitsWrapper").appendChild(newElement)
 }
 
-
-const data = {
-  name: exhibitName,
-  theme: exhibitTheme,
-  date: exhibitDateCreated
-}
 sendData(data)
 // added the infroamtion to dynamically change the circle in the list 
 document.addEventListener("DOMContentLoaded", () => {

@@ -4,25 +4,26 @@ const path = require("path");
 const cors = require("cors");
 const fs = require("fs"); //allows files to be accessed 
 const app = express();
-const PORT = process.env.PORT || 3000; //?
+const PORT = process.env.PORT || 3002; //?
 
 app.use(cors()); //enables  for all cores
 app.use(express.json()); //middleware to parse JSON bodies
 app.use(express.static(path.join(__dirname, "public"))); //creating the app
 
+// app.post("/api/exhibition", (req, res) => {
+//   // Logic to create an exhibition based on curator's notes
+//   res.json({ message: "Exhibition created successfully" });
+// });
+// app.post("/api/artwork", (req, res) => {
+//   // Logic to add artwork
+//   res.json({ message: "Artwork added successfully" });
+//   //fs.writeFileSync('artwork.json', JSON.stringify(req.body)); //saves the artwork to a text file
+// });
+
+// Chris: deadlines and to do
 app.get("/data", (req, res) => {
   // define the link
   res.sendFile(path.join(__dirname, "public", "deadline.html"));
-   });
-
-app.post("/api/exhibition", (req, res) => {
-  // Logic to create an exhibition based on curator's notes
-  res.json({ message: "Exhibition created successfully" });
-});
-app.post("/api/artwork", (req, res) => {
-  // Logic to add artwork
-  res.json({ message: "Artwork added successfully" });
-  //fs.writeFileSync('artwork.json', JSON.stringify(req.body)); //saves the artwork to a text file
 });
 app.delete("/api/artwork/:id", (req, res) => {
   // Logic to delete artwork by id
@@ -50,6 +51,36 @@ app.post("/api/deadlines", (req, res) => {
         });
     });
 });
+
+//Ashley: EXHIBITS
+app.get("/data", (req, res) => {
+  // define the link
+  res.sendFile(path.join(__dirname, "public", "exhibitProjects.html"));
+});
+
+app.post("/api/exhibits", (req, res) => {
+  const data = fs.readFileSync("./exhibits.json", "utf8");
+  const list = JSON.parse(data || "[]");
+  list.push(req.body)
+  res.json({ message: "Exhibition created successfully" });
+});
+
+app.put("/data/:index", (req, res) => {
+  const { index } = req.params;
+  const updatedItem = req.body;
+  const data = readData();
+
+  if (!data[index]) {
+    return res.status(404).json({ message: "Item not found" });
+  }
+
+  data[index] = { ...data[index], ...updatedItem };
+  writeData(data);
+
+  res.json({ message: "Item updated", item: data[index] });
+});
+
+
 app.listen(PORT, () => { 
   console.log(`Server is running on http://localhost:${PORT}`);
 });
