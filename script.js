@@ -1,5 +1,3 @@
-import {addDeadline} from './client'
-
 function openNav() {
   //Open nav Bar (Not working Yet )
   document.getElementById("mySidenav").style.width = "250px";
@@ -11,6 +9,8 @@ function closeNav() {
   document.getElementById("main").style.marginLeft = "0";
 }
 //end of side bar code
+
+
 
 // Deadlines  feature
 const addAListItem = (text) => {
