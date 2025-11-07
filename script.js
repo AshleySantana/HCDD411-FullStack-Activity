@@ -77,7 +77,7 @@ document.querySelector("#btn_add").addEventListener("click", addModule);
 // document.querySelector("#btn_save")
 //     .addEventListener("click", saveModule);
 
-document.querySelector("#btn_load").addEventListener("click", loadModule);
+//document.querySelector("#btn_load").addEventListener("click", loadModule);
 // end of deadlines feature
 // Deadlines Page feature
 
@@ -107,3 +107,81 @@ function createExhibit() {
 
   document.querySelector("#exhibitsWrapper").appendChild(newElement);
 }
+// added the infroamtion to dynamically change the circle in the list 
+
+
+document.addEventListener("DOMContentLoaded", () => {
+  const categoryColors = {
+    ExhibitionPlanning: "#FFB347",
+    cataloging: "#87CEFA",
+    documentation: "#90EE90",
+    other: "#FFFFFF"
+  };
+
+  function addDeadlineItem(text, category) {
+    const list = document.getElementById("todomodules");
+
+    if (!list) {
+      console.error("Could not find #todomodules in the DOM.");
+      return;
+    }
+
+    const listItem = document.createElement("li");
+    const wrapper = document.createElement("div");
+    wrapper.className = "lstElm";
+
+    const circle = document.createElement("div");
+    circle.className = "circle";
+    circle.style.backgroundColor = categoryColors[category] || "#ccc";
+    circle.textContent = category.charAt(0).toUpperCase();
+
+    const ltext = document.createElement("div");
+    ltext.className = "ltext";
+
+    const titleSpan = document.createElement("span");
+    titleSpan.className = "title";
+    titleSpan.textContent = text;
+
+    const metaDiv = document.createElement("div");
+    metaDiv.className = "meta";
+    metaDiv.textContent = `Due: ${new Date().toISOString().split("T")[0]}`;
+
+    ltext.appendChild(titleSpan);
+    ltext.appendChild(metaDiv);
+
+    const checkbox = document.createElement("input");
+    checkbox.type = "checkbox";
+    checkbox.name = "status";
+
+    const label = document.createElement("label");
+    label.setAttribute("for", "status");
+
+    wrapper.appendChild(circle);
+    wrapper.appendChild(ltext);
+    wrapper.appendChild(checkbox);
+    wrapper.appendChild(label);
+
+    listItem.appendChild(wrapper);
+    list.appendChild(listItem);
+  }
+
+  document.querySelector("#btn_add").addEventListener("click", () => {
+    const input = document.getElementById("module");
+    const categorySelect = document.getElementById("category");
+
+    const deadlineText = input.value.trim();
+    const selectedCategory = categorySelect.value;
+
+    if (!deadlineText || !selectedCategory) {
+      alert("Please enter a title and select a category.");
+      return;
+    }
+
+    addDeadlineItem(deadlineText, selectedCategory);
+
+    input.value = "";
+    categorySelect.value = "";
+  });
+});
+// end of todo page js code
+// added this here bc 

@@ -1,17 +1,19 @@
+//this is the thing that is reciving the request
 const express = require("express");
 const path = require("path");
 const cors = require("cors");
-const fs = require("fs"); //allows files to be acessed
+const fs = require("fs"); //allows files to be accessed 
 const app = express();
-const PORT = PORT || 3000; //?
+const PORT = process.env.PORT || 3000; //?
 
 app.use(cors()); //enables  for all cores
+app.use(express.json()); //middleware to parse JSON bodies
 app.use(express.static(path.join(__dirname, "public"))); //creating the app
 
 app.get("/data", (req, res) => {
   // define the link
   res.sendFile(path.join(__dirname, "public", "deadline.html"));
-});
+   });
 
 app.post("/api/exhibition", (req, res) => {
   // Logic to create an exhibition based on curator's notes
@@ -26,8 +28,29 @@ app.delete("/api/artwork/:id", (req, res) => {
   // Logic to delete artwork by id
   res.json({ message: "Artwork deleted successfully" });
 });
-
-app.listen(PORT, () => {
+app.get("/api/deadlines", (req, res) => {
+    // Logic to get all deadlines
+    fs.readFile('listInfo.json', 'utf8', (err, data) => {
+        if (err) {
+            return res.status(500).json({ message: "Error reading deadlines" });
+        }
+        res.json(JSON.parse(data));
+    });
+});
+app.post("/api/deadlines", (req, res) => {
+    // Logic to create a new deadline
+    const newItem = req.body;
+    fs.readFile('listInfo.json', 'utf8', (err, data) => {
+        if (err) return res.status(500).json({ message: "Error reading deadlines" });
+        const json = JSON.parse(data);
+        json.listItems.push(newItem);
+        fs.writeFile('listInfo.json', JSON.stringify(json), (err) => {
+            if (err) return res.status(500).json({ message: "Error saving deadline" });
+            res.json({ message: "Deadline created successfully" });
+        });
+    });
+});
+app.listen(PORT, () => { 
   console.log(`Server is running on http://localhost:${PORT}`);
 });
 
