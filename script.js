@@ -1,5 +1,4 @@
 function openNav() {
-  //Open nav Bar (Not working Yet )
   document.getElementById("mySidenav").style.width = "250px";
   document.getElementById("main").style.marginLeft = "250px";
 }
@@ -31,7 +30,7 @@ const addAListItem = (text) => {
   listItem.appendChild(listBtn);
   listBtn.textContent = "Delete";
   listBtn.setAttribute("class", "tufte-button primary");
-  list.appendChild(listItem);
+  list.appendChild(listItem); // this is causing and issues 
 
   listBtn.addEventListener("click", () => {
     list.removeChild(listItem);
@@ -118,10 +117,6 @@ function createExhibit(){
 
   deleteButton.addEventListener("click",()=> {
       deleteButton.parentElement.remove()
-  })
-
-  document.querySelector("#exhibitsWrapper").appendChild(newElement)
-}
 
 
 const data = {
@@ -130,6 +125,11 @@ const data = {
   date: exhibitDateCreated
 }
 sendData(data)
+  })
+
+  document.querySelector("#exhibitsWrapper").appendChild(newElement)
+}
+
 // added the infroamtion to dynamically change the circle in the list 
 document.addEventListener("DOMContentLoaded", () => {
   const categoryColors = {
