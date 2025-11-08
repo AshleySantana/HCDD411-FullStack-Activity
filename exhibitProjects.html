@@ -42,8 +42,30 @@
 
       <div class="exhibitsWrapper" id="exhibitsWrapper"></div>
 
+      <h1 id="exhibit-title"></h1>
+      <p><strong>Artist:</strong> <span id="exhibit-artist"></span></p>
+      <p id="exhibit-description"></p>
+
+
+      <div id="temporaryWorkspace">
+
+        <select id="chooseArtworks" onchange="selectedArt()">
+          <option></option>
+        </select>
+
+        <table id="artworkTable">
+          <tr>
+              <td>Title</td>
+              <td>Image</td>
+              <td>Artist</td>
+              <td>Year</td>
+          </tr>
+      </table>
+    </div>
+
     </div>
     <script src="script.js" defer></script>
+    <script src="client.js" defer></script>
   </body>
 </html>
 

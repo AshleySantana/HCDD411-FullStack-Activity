@@ -1,7 +1,7 @@
 body {
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
   margin: 0;
-  padding: 0; /* added to remove gap */
+  padding: -1; /* added to remove gap */
 }
 .container {
   display: flex;

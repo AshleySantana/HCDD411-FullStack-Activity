@@ -9,6 +9,8 @@ function closeNav() {
 }
 //end of side bar code
 
+
+
 // Deadlines  feature
 const addAListItem = (text) => {
   /*
@@ -71,7 +73,7 @@ const loadModule = (event) => {
   });
 };
 
-document.querySelector("#btn_add").addEventListener("click", addModule);
+//document.querySelector("#btn_add").addEventListener("click", addModule);
 
 // document.querySelector("#btn_save")
 //     .addEventListener("click", saveModule);
@@ -88,9 +90,17 @@ document.querySelector("#btn_add").addEventListener("click", addModule);
 
 function createExhibit(){
   // calling all of my info
+
+
   let exhibitName = document.querySelector('#exhibitInputName').value
   let exhibitTheme = document.querySelector('#exhibitInputTheme').value
   let exhibitDateCreated = document.querySelector('#exhibitInputDateCreated').value
+  
+  let data = {
+    name: exhibitName,
+    theme: exhibitTheme,
+    date: exhibitDateCreated
+  }
 
   let newElement = document.createElement("div")
 
@@ -117,6 +127,8 @@ function createExhibit(){
 
   deleteButton.addEventListener("click",()=> {
       deleteButton.parentElement.remove()
+
+document.addEventListener("DOMContentLoaded", () => {
 
 
 const data = {
@@ -204,5 +216,6 @@ document.addEventListener("DOMContentLoaded", () => {
     categorySelect.value = "";
   });
 });
+
 // end of todo page js code
-// added this here bc 
+// added this here bc i think it works better here
