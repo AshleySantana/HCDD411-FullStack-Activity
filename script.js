@@ -74,7 +74,7 @@ const loadModule = (event) => {
   });
 };
 
-document.querySelector("#btn_add").addEventListener("click", addModule);
+//document.querySelector("#btn_add").addEventListener("click", addModule);
 
 // document.querySelector("#btn_save")
 //     .addEventListener("click", saveModule);
@@ -133,7 +133,32 @@ function createExhibit(){
   document.querySelector("#exhibitsWrapper").appendChild(newElement)
 }
 
-sendData(data)
+document.addEventListener("DOMContentLoaded", () => {
+
+  console.log("boo")
+  
+  const params = new URLSearchParams(window.location.search);
+  const exhibitId = params.get("id");
+
+  if (!exhibitId) return;
+
+  fetch("/api/exhibits")
+    .then(res => res.json())
+    .then(exhibits => {
+      const exhibit = exhibits.find(e => e.id === exhibitId);
+      if (exhibit) {
+        document.getElementById("exhibit-title").textContent = exhibit.title;
+        document.getElementById("exhibit-artist").textContent = exhibit.artist;
+        document.getElementById("exhibit-description").textContent = exhibit.description;
+      } else {
+        console.error("Exhibit not found");
+      }
+    })
+    .catch(err => console.error("Error loading exhibit:", err));
+});
+
+
+//sendData(data)
 // added the infroamtion to dynamically change the circle in the list 
 document.addEventListener("DOMContentLoaded", () => {
   const categoryColors = {
@@ -210,3 +235,5 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 // end of todo page js code
 // added this here bc 
+
+
