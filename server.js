@@ -47,9 +47,25 @@ app.post("/api/deadlines", (req, res) => {
         json.listItems.push(newItem);
         fs.writeFile('listInfo.json', JSON.stringify(json), (err) => {
             if (err) return res.status(500).json({ message: "Error saving deadline" });
-            res.json({ message: "Deadline created successfully" });
+            res.json(newItem); 
         });
     });
+app.delete("/api/deadlines/:id", (req, res) => {
+  const idToDelete = req.params.id;
+
+  fs.readFile("listInfo.json", "utf8", (err, data) => {
+    if (err) return res.status(500).json({ message: "Error reading deadlines" });
+
+    const json = JSON.parse(data);
+    json.listItems = json.listItems.filter(item => item.id !== idToDelete);
+
+    fs.writeFile("listInfo.json", JSON.stringify(json, null, 2), (err) => {
+      if (err) return res.status(500).json({ message: "Error saving updated deadlines" });
+      res.json({ message: "Deadline deleted successfully" });
+    });
+  });
+});
+
 });
 
 //Ashley: EXHIBITS

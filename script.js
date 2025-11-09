@@ -1,149 +1,17 @@
+
+// Sidebar open/close functions
 function openNav() {
   document.getElementById("mySidenav").style.width = "250px";
   document.getElementById("main").style.marginLeft = "250px";
 }
 function closeNav() {
-  //Close nav Bar: Side bar
   document.getElementById("mySidenav").style.width = "0";
   document.getElementById("main").style.marginLeft = "0";
 }
-//end of side bar code
-
-
-
-// Deadlines  feature
-const addAListItem = (text) => {
-  /*
-   * Adds a new list item with the given text and a Delete button.
-   */
-
-  if (text.length === 0) {
-    // Won't add empty strings
-    return;
-  }
-
-  const list = document.querySelector("ul");
-  const listItem = document.createElement("li");
-  const listText = document.createElement("span");
-  const listBtn = document.createElement("button");
-
-  listItem.appendChild(listText);
-  listText.textContent = text;
-  listItem.appendChild(listBtn);
-  listBtn.textContent = "Delete";
-  listBtn.setAttribute("class", "tufte-button primary");
-  list.appendChild(listItem); // this is causing and issues 
-
-  listBtn.addEventListener("click", () => {
-    list.removeChild(listItem);
-  });
-};
-const addModule = (event) => {
-  const input = document.querySelector("input");
-
-  const moduleName = input.value;
-  addAListItem(moduleName);
-
-  // limits how many inputs are there
-
-  // clear the textbox
-  input.value = "";
-};
-
-const saveModule = (event) => {
-  const listItems = document.querySelectorAll("li span");
-  const modules = [];
-  listItems.forEach((item) => {
-    modules.push(item.textContent);
-  });
-
-  const modulesJSON = JSON.stringify(modules);
-  localStorage.setItem("modules", modulesJSON);
-};
-
-const loadModule = (event) => {
-  const modulesJSON = localStorage.getItem("modules");
-  if (!modulesJSON) {
-    return;
-  }
-
-  const modules = JSON.parse(modulesJSON);
-  modules.forEach((moduleName) => {
-    addAListItem(moduleName);
-  });
-};
-
-//document.querySelector("#btn_add").addEventListener("click", addModule);
-
-// document.querySelector("#btn_save")
-//     .addEventListener("click", saveModule);
-
-//document.querySelector("#btn_load").addEventListener("click", loadModule);
-// end of deadlines feature
-// Deadlines Page feature
-
-//Outline for deadlines page
-// when the submit button is clicked a new element need to br created
-// it should take the inpput of rthe
-
-// Exhibit page JS Code
-
-function createExhibit(){
-  // calling all of my info
-
-
-  let exhibitName = document.querySelector('#exhibitInputName').value
-  let exhibitTheme = document.querySelector('#exhibitInputTheme').value
-  let exhibitDateCreated = document.querySelector('#exhibitInputDateCreated').value
-  
-  let data = {
-    name: exhibitName,
-    theme: exhibitTheme,
-    date: exhibitDateCreated
-  }
-
-  let newElement = document.createElement("div")
-
-  let textName = document.createElement("input")
-  textName.classList.add("exhibitName")
-  textName.value = exhibitName
-
-  let textTheme = document.createElement("input")
-  textTheme.classList.add("exhibitTheme")
-  textTheme.value = exhibitTheme
-
-  let textDateCreated = document.createElement("input")
-  textDateCreated.classList.add("exhibitDateCreated")
-  textDateCreated.value = exhibitDateCreated
-
-  let deleteButton = document.createElement("button")
-  deleteButton.textContent = "Delete"
-  deleteButton.classList.add("delete")
-  
-  newElement.appendChild(textName)
-  newElement.appendChild(textTheme)
-  newElement.appendChild(textDateCreated)
-  newElement.appendChild(deleteButton)
-
-  deleteButton.addEventListener("click",()=> {
-      deleteButton.parentElement.remove()
+// end of side bar code
 
 document.addEventListener("DOMContentLoaded", () => {
-
-
-const data = {
-  name: exhibitName,
-  theme: exhibitTheme,
-  date: exhibitDateCreated
-}
-sendData(data)
-  })
-
-  document.querySelector("#exhibitsWrapper").appendChild(newElement)
-}
-
-// added the infroamtion to dynamically change the circle in the list 
-document.addEventListener("DOMContentLoaded", () => {
+  // Deadlines feature
   const categoryColors = {
     ExhibitionPlanning: "#FFB347",
     cataloging: "#87CEFA",
@@ -151,7 +19,8 @@ document.addEventListener("DOMContentLoaded", () => {
     other: "#FFFFFF"
   };
 
-  function addDeadlineItem(text, category) {
+  
+function addDeadlineItem(text, category, dueDate, id) {
     const list = document.getElementById("todomodules");
 
     if (!list) {
@@ -160,6 +29,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     const listItem = document.createElement("li");
+    listItem.dataset.id = id; // Store ID for deletion
+
     const wrapper = document.createElement("div");
     wrapper.className = "lstElm";
 
@@ -177,7 +48,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const metaDiv = document.createElement("div");
     metaDiv.className = "meta";
-    metaDiv.textContent = `Due: ${new Date().toISOString().split("T")[0]}`;
+    metaDiv.textContent = `Due: ${dueDate}`; //  Use passed-in dueDate
 
     ltext.appendChild(titleSpan);
     ltext.appendChild(metaDiv);
@@ -196,26 +67,148 @@ document.addEventListener("DOMContentLoaded", () => {
 
     listItem.appendChild(wrapper);
     list.appendChild(listItem);
+
+    // Checkbox event to remove item and send DELETE request
+    checkbox.addEventListener("change", () => {
+      if (checkbox.checked) {
+        listItem.classList.add("fade-out"); 
+        setTimeout(() => {
+          listItem.remove();
+
+          // Send DELETE request to server
+          fetch(`http://localhost:3002/api/deadlines/${id}`, {
+            method: "DELETE"
+          })
+            .then(response => response.json())
+            .then(data => {
+              console.log("Deleted from server:", data);
+            })
+            .catch(error => {
+              console.error("Error deleting deadline:", error);
+            });
+        }, 300);
+      }
+    });
   }
 
-  document.querySelector("#btn_add").addEventListener("click", () => {
-    const input = document.getElementById("module");
-    const categorySelect = document.getElementById("category");
+  // Button click to add deadline
 
-    const deadlineText = input.value.trim();
-    const selectedCategory = categorySelect.value;
+document.querySelector("#btn_add").addEventListener("click", () => {
+  const input = document.getElementById("module");
+  const categorySelect = document.getElementById("category");
 
-    if (!deadlineText || !selectedCategory) {
-      alert("Please enter a title and select a category.");
-      return;
-    }
+  const deadlineText = input.value.trim();
+  const selectedCategory = categorySelect.value;
 
-    addDeadlineItem(deadlineText, selectedCategory);
+  if (!deadlineText || !selectedCategory) {
+    alert("Please enter a title and select a category.");
+    return;
+  }
 
-    input.value = "";
-    categorySelect.value = "";
+  
+const newItem = {
+      id: Date.now().toString(), // Simple unique ID
+      title: deadlineText,
+      category: selectedCategory,
+      dueDate: new Date().toISOString().split("T")[0]
+    };
+
+    // Send to server
+    fetch("http://localhost:3002/api/deadlines", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(newItem)
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log("Saved to server:", data);
+        // Pass all data including ID
+        addDeadlineItem(data.title, data.category, data.dueDate, data.id);
+        input.value = "";
+        categorySelect.value = "";
+      })
+      .catch((error) => {
+        console.error("Error saving deadline:", error);
+      });
   });
+
+  //  Load deadlines from server on page load
+  fetch("http://localhost:3002/api/deadlines")
+    .then((response) => response.json())
+    .then((data) => {
+      data.listItems.forEach((item) => {
+        addDeadlineItem(item.title, item.category, item.dueDate, item.id);
+      });
+    })
+    .catch((error) => {
+      console.error("Error loading deadlines:", error);
+    });
+
+
+  // Exhibit page feature
+  function createExhibit() {
+    // calling all of my info
+    const exhibitName = document.querySelector('#exhibitInputName').value;
+    const exhibitTheme = document.querySelector('#exhibitInputTheme').value;
+    const exhibitDateCreated = document.querySelector('#exhibitInputDateCreated').value;
+
+    const newElement = document.createElement("div");
+
+    const textName = document.createElement("input");
+    textName.classList.add("exhibitName");
+    textName.value = exhibitName;
+
+    const textTheme = document.createElement("input");
+    textTheme.classList.add("exhibitTheme");
+    textTheme.value = exhibitTheme;
+
+    const textDateCreated = document.createElement("input");
+    textDateCreated.classList.add("exhibitDateCreated");
+    textDateCreated.value = exhibitDateCreated;
+
+    const deleteButton = document.createElement("button");
+    deleteButton.textContent = "Delete";
+    deleteButton.classList.add("delete");
+
+    deleteButton.addEventListener("click", () => {
+      newElement.remove();
+    });
+
+    newElement.appendChild(textName);
+    newElement.appendChild(textTheme);
+    newElement.appendChild(textDateCreated);
+    newElement.appendChild(deleteButton);
+
+    document.querySelector("#exhibitsWrapper").appendChild(newElement);
+  }
+
+  // Optional: Save and load modules locally
+  
+const saveModule = () => {
+    const listItems = document.querySelectorAll("li span");
+    const modules = [];
+    listItems.forEach((item) => {
+      modules.push(item.textContent);
+    });
+
+    const modulesJSON = JSON.stringify(modules);
+    localStorage.setItem("modules", modulesJSON);
+  };
+
+  const loadModule = () => {
+    const modulesJSON = localStorage.getItem("modules");
+    if (!modulesJSON) return;
+
+    const modules = JSON.parse(modulesJSON);
+    modules.forEach((moduleName) => {
+      addDeadlineItem(moduleName, "other", new Date().toISOString().split("T")[0], Date.now().toString()); // 🔧 NEW: Add ID
+    });
+  };
+
+  // Uncomment if you want to use these buttons
+  // document.querySelector("#btn_save").addEventListener("click", saveModule);
+  // document.querySelector("#btn_load").addEventListener("click", loadModule);
 });
 
-// end of todo page js code
-// added this here bc i think it works better here

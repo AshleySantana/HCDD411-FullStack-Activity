@@ -159,6 +159,12 @@ body {
   background-color: #555;
 }
 
+.fade-out {
+  opacity: 0;
+  transition: opacity 0.3s ease-out;
+}
+
+
 /*Gallery View*/
 /*TODO: add side scrolling depending on what we populate here */
 .galleryCard {
