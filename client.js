@@ -130,8 +130,7 @@ function selectedArt() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-    
-    console.log("my life is a mess")
+
 
     const form = document.getElementById("create-exhibit-form");
   
@@ -159,15 +158,8 @@ document.addEventListener("DOMContentLoaded", () => {
         })
         .catch(err => console.error("Error creating exhibit:", err));
       });
+    } else {
+        console.log("didn't work")
     }
   });
   
-
-
-
-// export function addDeadline(data){
-//     const deadlines = new XMLHttpRequest();
-//     deadlines.open("POST", "http://localhost:3000/api/exhibition", true);
-//     // this is for deadlines 
-//     deadlines.send(data)
-// }

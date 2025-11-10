@@ -9,61 +9,62 @@
   </head>
   <body>
 
-    <div class="page">
+
       
       <!-- Beginning of header  -->
-      <div id="mySidenav" class="sidenav">
-        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"
-          >&times;</a
-        >
-        <a href="index.html">Home</a>
-        <a href="exhibitProjects.html">Your Exhibit</a>
-        <a href="deadlines.html">Deadlines </a>
-        <a href="">Settings</a>
-      </div>
-     <span class="openbtn" onclick="openNav()">open</span>
+        <div id="mySidenav" class="sidenav">
+          <a href="javascript:void(0)" class="closebtn" onclick="closeNav()"
+            >&times;</a
+          >
+          <a href="index.html">Home</a>
+          <a href="exhibitProjects.html">Your Exhibit</a>
+          <a href="deadlines.html">Deadlines </a>
+          <a href="">Settings</a>
+        </div>
+        <span class="openbtn" onclick="openNav()">open</span>
       <!-- end of header -->
-    
-      <h1>Your Exhibits</h1>
-
-      <label for="exhibitInputName">Name: </label>
-      <input type="text" id="exhibitInputName"></input>
-      <br>
-
-      <label for="exhibitInputTheme">Theme: </label>
-      <input type="text" id="exhibitInputTheme"></input>
-      <br>
-
-      <label for="exhibitInputDateCreated">Date Created: </label>
-      <input type="text" id="exhibitInputDateCreated"></input>
-      <br>
       
-      <button onclick="createExhibit()" id="exhibitCreateButton">Create!</button>
+      <div id="main" class="container">
+        <h1>Your Exhibits</h1>
 
-      <div class="exhibitsWrapper" id="exhibitsWrapper"></div>
+        <label for="exhibitInputName">Name: </label>
+        <input type="text" id="exhibitInputName"></input>
+        <br>
 
-      <h1 id="exhibit-title"></h1>
-      <p><strong>Artist:</strong> <span id="exhibit-artist"></span></p>
-      <p id="exhibit-description"></p>
+        <label for="exhibitInputTheme">Theme: </label>
+        <input type="text" id="exhibitInputTheme"></input>
+        <br>
+
+        <label for="exhibitInputDateCreated">Date Created: </label>
+        <input type="text" id="exhibitInputDateCreated"></input>
+        <br>
+        
+        <button onclick="createExhibit()" id="exhibitCreateButton">Create!</button>
+
+        <div class="exhibitsWrapper" id="exhibitsWrapper"></div>
+
+        <h1 id="exhibit-title"></h1>
+        <p><strong>Artist:</strong> <span id="exhibit-artist"></span></p>
+        <p id="exhibit-description"></p>
 
 
-      <div id="temporaryWorkspace">
+        <div id="temporaryWorkspace">
 
-        <select id="chooseArtworks" onchange="selectedArt()">
-          <option></option>
-        </select>
+          <select id="chooseArtworks" onchange="selectedArt()">
+            <option></option>
+          </select>
 
-        <table id="artworkTable">
-          <tr>
-              <td>Title</td>
-              <td>Image</td>
-              <td>Artist</td>
-              <td>Year</td>
-          </tr>
-      </table>
-    </div>
-
-    </div>
+          <table id="artworkTable">
+            <tr>
+                <td>Title</td>
+                <td>Image</td>
+                <td>Artist</td>
+                <td>Year</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      
     <script src="script.js" defer></script>
     <script src="client.js" defer></script>
   </body>

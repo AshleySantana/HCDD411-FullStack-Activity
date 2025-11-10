@@ -78,13 +78,14 @@ app.get("/api/exhibits", (req, res) => {
 // POST - Add a new exhibit project
 app.post("/api/exhibits", (req, res) => {
   const newExhibit = req.body;
-  newExhibit.id = newExhibit.id || Date.now().toString();
+  console.log(newExhibit)
 
   fs.readFile(exhibitsPath, "utf8", (err, data) => {
     if (err) {
       return res.status(500).json({ message: "Error reading exhibits file" });
     }
     const exhibits = JSON.parse(data);
+
     exhibits.push(newExhibit);
 
     fs.writeFile(exhibitsPath, JSON.stringify(exhibits, null, 2), (err) => {
@@ -122,21 +123,30 @@ app.put("/api/exhibits/:id", (req, res) => {
 });
 
 // DELETE - Remove an exhibit project by ID
-app.delete("/api/exhibits/:id", (req, res) => {
-  const exhibitId = req.params.id;
+app.delete("/api/exhibits/:name", (req, res) => {
+  const exhibitName = req.params.name;
   fs.readFile(exhibitsPath, "utf8", (err, data) => {
-    if (err) {
-      return res.status(500).json({ message: "Error reading exhibits file" });
+    if (err) return res.status(500).json({ message: "Error reading exhibits file." });
+
+    let exhibits = [];
+    try {
+      exhibits = JSON.parse(data || "[]");
+    } catch (parseErr) {
+      return res.status(500).json({ message: "Invalid exhibits file format." });
     }
-    let exhibits = JSON.parse(data);
-    const filteredExhibits = exhibits.filter((exhibit) => exhibit.id !== exhibitId);
-    fs.writeFile(exhibitsPath, JSON.stringify(filteredExhibits, null, 2), (err) => {
-      if (err) {
-        return res.status(500).json({ message: "Error writing exhibits file" });
-      }
-      res.json({ message: "Exhibit deleted successfully" });
+
+    // Filter out the exhibit matching the name
+    const updatedExhibits = exhibits.filter(ex => ex.name !== exhibitName);
+
+    // Write the updated array back to the file
+    fs.writeFile(exhibitsPath, JSON.stringify(updatedExhibits, null, 2), (writeErr) => {
+      if (writeErr) return res.status(500).json({ message: "Error deleting exhibit." });
+      res.json({ message: `Exhibit '${exhibitName}' deleted successfully.` });
     });
   });
+  console.log(exhibitName)
+
+  res.json({ message: `Exhibit ${exhibitName} deleted.` });
 });
 
 app.listen(PORT, () => { 

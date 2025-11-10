@@ -176,6 +176,7 @@ const saveModule = () => {
 
  // Create exhibit page feature
  function createExhibit(){
+
   // calling all of my info
 
   let exhibitName = document.querySelector('#exhibitInputName').value
@@ -188,19 +189,28 @@ const saveModule = () => {
     date: exhibitDateCreated
   }
 
+  const xhr = new XMLHttpRequest();
+  xhr.open("POST","http://127.0.0.1:3002/api/exhibits", true)
+  xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8")
+  console.log(data)
+  xhr.send(JSON.stringify(data))
+}
+
+function appendExhibit(exhibit){
+  console.log(exhibit)
   let newElement = document.createElement("div")
 
-  let textName = document.createElement("input")
+  let textName = document.createElement("p")
   textName.classList.add("exhibitName")
-  textName.value = exhibitName
+  textName.value = exhibit.name
 
-  let textTheme = document.createElement("input")
+  let textTheme = document.createElement("p")
   textTheme.classList.add("exhibitTheme")
-  textTheme.value = exhibitTheme
+  textTheme.value = exhibit.theme
 
-  let textDateCreated = document.createElement("input")
+  let textDateCreated = document.createElement("p")
   textDateCreated.classList.add("exhibitDateCreated")
-  textDateCreated.value = exhibitDateCreated
+  textDateCreated.value = exhibit.date
 
   let deleteButton = document.createElement("button")
   deleteButton.textContent = "Delete"
@@ -212,8 +222,58 @@ const saveModule = () => {
   newElement.appendChild(deleteButton)
 
   deleteButton.addEventListener("click",()=> {
-      deleteButton.parentElement.remove()
+    deleteExhibit(exhibit.name, deleteButton.parentElement);
+     
   })
 
   document.querySelector("#exhibitsWrapper").appendChild(newElement)
 }
+
+function getExhibit() {
+
+  const xhr = new XMLHttpRequest();
+
+  // Initialize the request
+  xhr.open("GET", "http://127.0.0.1:3002/api/exhibits", true);
+
+  xhr.onload = function() {
+    if (xhr.status >= 200 && xhr.status < 300) {
+      // Parse the JSON response text from the server
+      const exhibits = JSON.parse(xhr.responseText);
+      exhibits.forEach((exhibit) => appendExhibit(exhibit))
+      console.log("Exhibits received:", exhibits);
+    } else {
+      console.error("Error fetching exhibits:", xhr.status, xhr.statusText);
+    }
+  };
+  xhr.send();
+}
+
+function deleteExhibit(exhibitName, elementToRemove) {
+  const xhr = new XMLHttpRequest();
+
+  // Assuming your API identifies exhibits by "name"
+  // If you use "id", replace exhibitName with exhibit.id in both frontend and backend
+  xhr.open("DELETE", `http://127.0.0.1:3002/api/exhibits/${encodeURIComponent(exhibitName)}`, true);
+
+  xhr.onload = function() {
+    if (xhr.status >= 200 && xhr.status < 300) {
+      
+      console.log(`Exhibit "${exhibitName}" deleted successfully.`);
+      elementToRemove.remove(); // remove the exhibit from the DOM
+    } else {
+      console.error("Error deleting exhibit:", xhr.status, xhr.statusText);
+    }
+  };
+
+  xhr.onerror = function() {
+    console.error("Network error while deleting exhibit.");
+  };
+
+  xhr.send();
+}
+
+// Fetch and display exhibits when page loads
+getExhibit();
+
+

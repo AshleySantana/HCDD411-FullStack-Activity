@@ -1,523 +1,335 @@
-body {
-  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
-  margin: 0;
-  padding: -1; /* added to remove gap */
-}
-.container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  justify-content: flex-start;
-  height: 100vh;
-  margin: 0; /* added to remove gap */
-  padding: 0;
-}
-/* The side navigation menu */
-.sidenav {
-  height: 100%; /* 100% Full-height */
-  width: 250px; /* 0 width - change this with JavaScript */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Stay on top */
-  top: 0; /* Stay at the top */
-  left: 0;
-  background-color: #111; /* Black*/
-  overflow-x: hidden; /* Disable horizontal scroll */
-  padding-top: 60px; /* Place content 60px from the top */
-  transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
-
-  display: block;
-}
-
-/* The navigation menu links */
-.sidenav a {
-  padding: 8px 8px 8px 32px;
-  text-decoration: none;
-  font-size: 25px;
-  color: #818181;
-  display: block;
-  transition: 0.3s;
-}
-
-/* When you mouse over the navigation links, change their color */
-.sidenav a:hover {
-  color: #f1f1f1;
-}
-
-/* Position and style the close button (top right corner) */
-.sidenav .closebtn {
-  position: absolute;
-  top: 0;
-  right: 25px;
-  font-size: 36px;
-  margin-left: 50px;
-}
-.openbtn {
-  position: absolute; /* Overlay on top of everything */
-  top: 20px;
-  left: 20px;
-  font-size: 18px;
-  background-color: #111;
-  color: white;
-  padding: 10px 15px;
-  border: none;
-  border-radius: 4px;
-  z-index: 1000; /* Ensure it's above all other content */
-  cursor: pointer;
-}
-
-.welcomeBanner {
-  position: sticky;
-  top: 0;
-  padding: 10px;
-  text-align: center;
-  color: rgb(0, 0, 0);
-  font-size: 50px;
-  z-index: 10;
-  width: 100%;
-}
-.dashboard {
-  margin-top: 20px;
-  width: 80%;
-  height: 80%;
-  background-color: #ffffff;
-  padding: 20px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-/* Up */
-.deadlineChart {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 16px;
-  padding: 20px;
-}
-
-/* Main card */
-.deadlineCard {
-  display: flex;
-  flex-direction: column;
-  width: 300px;
-  height: 350px; /* total height */
-  background-color: #e0e0e0;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  box-sizing: border-box;
-  overflow: hidden;
-  padding: 10px;
-}
-
-/* Top fixed area */
-.dlTop {
-  flex-shrink: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-/* Scrollable list */
-.dlList {
-  flex: 1;
-  overflow-y: auto;
-  background-color: #f5f5f5;
-  border-radius: 6px;
-  padding: 6px;
-  margin-top: 8px;
-  min-height: 0;
-}
-
-/* Remove list bullets and spacing */
-.dlList ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-/* Input + Add button row */
-.inputBar {
-  display: flex;
-  gap: 6px;
-  align-items: center;
-}
-
-/* Save/Load buttons row */
-.buttonBar {
-  display: flex;
-  justify-content: space-between;
-  gap: 8px;
-}
-
-/* Optional scrollbar styling */
-.dlList::-webkit-scrollbar {
-  width: 6px;
-}
-.dlList::-webkit-scrollbar-thumb {
-  background-color: #888;
-  border-radius: 3px;
-}
-.dlList::-webkit-scrollbar-thumb:hover {
-  background-color: #555;
-}
-
-.fade-out {
-  opacity: 0;
-  transition: opacity 0.3s ease-out;
-}
-
-
-/*Gallery View*/
-/*TODO: add side scrolling depending on what we populate here */
-.galleryCard {
-  display: flex;
-  flex-direction: column;
-  width: 400px;
-  height: 90%; /* total height */
-  background-color: #e0e0e0;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  box-sizing: border-box;
-  overflow: hidden;
-  padding: 10px;
-}
-.galleryWrapper {
-  flex: 1;
-  overflow-y: auto;
-  background-color: #f5f5f5;
-  border-radius: 6px;
-  padding: 6px;
-  margin-top: 8px;
-  min-height: 0;
-}
-.dashboard {
-  display: flex;
-  flex-direction: row; /* arrange items horizontally */
-  gap: 20px; /* space between cards */
-  justify-content: center; /* center the cards horizontally */
-  align-items: flex-start; /* align cards to the top */
-  width: 100%;
-  max-width: 1200px; /* prevent stretching too wide */
-  margin: 0 auto; /* center the dashboard itself */
-  padding: 20px;
-  background-color: #ffffff;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-/* Update card styles to make them more consistent */
-.galleryCard,
-.deadlineCard {
-  flex: 1; /* make cards share available space equally */
-  min-width: 300px; /* prevent cards from becoming too narrow */
-  max-width: 500px; /* prevent cards from becoming too wide */
-  margin: 0; /* remove any default margins */
-}
-/* Style page content - use this if you want to push the page content to the right when you open the side navigation */
-#main {
-  transition: margin-left 0.5s;
-  padding: 2px;
-  margin-left: 250px;
-  position: relative;
-}
-/* All the changed for the deadlines page */
-.dlInputCard {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 16px;
-  padding: 30px;
-  width: 100%;
-  /* max-width: 600px;  If you get rid of this it fills top */
-  margin: 0 auto;
-  background-color: rgb(151, 151, 151);
-}
-
-.tdlbanner {
-  text-align: center;
-  width: 100%;
-  margin: 0 0 16px 0;
-}
-
-.inputBar {
-  display: flex;
-  gap: 10px;
-  align-items: center;
-  width: 100%;
-  justify-content: center;
-}
-
-.categoryBar {
-  display: flex;
-  gap: 8px;
-  align-items: center;
-  width: 100%;
-  justify-content: center;
-}
-.tdlbanner {
-  font-size: 100px;
-  margin: 0;
-}
-.inputBar label,
-.categoryBar label {
-  font-size: 36px;
-  font-weight: 500;
-  color: #000000;
-  margin-right: 10px;
-}
-.inputBar input,
-.categoryBar select {
-  padding: 8px 12px;
-  font-size: 14px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  min-width: 200px;
-  height: 36px;
-  box-sizing: border-box;
-}
-/* the start of the elments */
-.todosection {
-  width: 100%; /* div that lst items are in, makes it full up to 80% */
-  margin: 0 auto;
-}
-.lstElm {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 12px;
-  width: 80%; /* matcher to do heafder  */
-  padding: 8px;
-  border-bottom: 1px solid #ccc;
-}
-.lstElm:hover {
-  background-color: #ccb;
-}
-.circle {
-  /* Circle used for labled */
-  width: 100px;
-  height: 100px; /* Set the same height as the width for a perfect circle */
-  background-color: blue; /* Choose a background color for your circle */
-  border-radius: 50%; /* This is the key property to make it round */
-  flex: 0 0 auto; /* ADDED don't grow or shrink */
-  display: flex; /* center any content inside */
-  align-items: center;
-  justify-content: center;
-  color: #fff;
-  font-weight: 700;
-  font-size: 14px;
-}
-
-/* EXHIBIT CSS CODE */
-.exhibitsWrapper {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  padding: 1rem;
-  justify-content: center;
-}
-
-#exhibitsWrapper div {
-  display: flex;
-  flex-direction: column;
-  width: 400px;
-  height: 90%; /* total height */
-  background-color: #e0e0e0;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  box-sizing: border-box;
-  overflow: hidden;
-  padding: 10px;
-}
-
-/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
-@media screen and (max-height: 450px) {
-  .sidenav {
-    padding-top: 15px;
+/* ===========================
+   THEME + GLOBAL RESET
+   =========================== */
+   :root{
+    --maroon: #800000;
+    --maroon-dark: #5a0000;
+    --white: #ffffff;
+    --light-grey: #f5f5f5;
+    --mid-grey: #cccccc;
+    --dark-grey: #333333;
+    --muted: #8a8a8a;
+    --transition: 0.28s ease;
+    --nav-width: 250px;
+    --nav-collapsed-width: 64px; /* width when collapsed (button will peek out) */
   }
+  
+  * { box-sizing: border-box; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; }
+  
+  /* page base */
+  html,body{ height:100%; margin:0; padding:0; padding-left: 1em; background:var(--light-grey); color:var(--maroon-dark); font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; line-height:1.5; }
+  
+  /* container central constraint */
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+  
+  /* small utility */
+  .hidden { display:none !important; }
+  
+
+/* ===========================
+   SIDENAV + OPEN BUTTON
+   =========================== */
+   .sidenav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: var(--nav-width);
+    background: linear-gradient(180deg, var(--maroon), var(--maroon-dark));
+    color: var(--white);
+    padding-top: 72px;
+    padding-left: 16px;
+    padding-right: 12px;
+    box-shadow: 2px 0 12px rgba(0, 0, 0, 0.12);
+    transition: width var(--transition), padding var(--transition);
+    z-index: 900;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    overflow: hidden;
+  }
+  
+  /* collapsed state — only open button remains visible */
+  .sidenav.collapsed {
+    width: var(--nav-collapsed-width);
+    padding: 0;
+    align-items: center;
+    justify-content: flex-start;
+    overflow: visible;
+  }
+  
+  /* Hide everything except the open button when collapsed */
+  .sidenav.collapsed > *:not(.openbtn) {
+    opacity: 0;
+    pointer-events: none;
+    visibility: hidden;
+    height: 0;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+  }
+  
+  /* nav links */
   .sidenav a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--white);
+    text-decoration: none;
+    padding: 10px 12px;
+    border-radius: 8px;
+    transition: background-color var(--transition), transform var(--transition), opacity var(--transition);
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  .sidenav a:hover {
+    background: rgba(255, 255, 255, 0.12);
+    transform: translateX(2px);
+  }
+  
+  /* logo */
+  .sidenav .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 8px;
+    margin-bottom: 8px;
+    font-weight: 800;
     font-size: 18px;
   }
-}
-@media screen and (max-width: 768px) {
-  /* Add for the dashboard panel */
-  .dashboard {
-    flex-direction: column; /* stack cards vertically on smaller screens */
-    align-items: stretch; /* stretch cards to full width */
+  
+  /* open button - stays visible always, peeks out when collapsed */
+  .sidenav .openbtn {
+    position: absolute;
+    top: 16px;
+    right: -28px; /* this makes it peek out */
+    width: 56px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--white);
+    color: var(--maroon);
+    border-radius: 12px;
+    border: 2px solid rgba(0, 0, 0, 0.06);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+    cursor: pointer;
+    font-weight: 700;
+    transition: transform var(--transition), right var(--transition), background var(--transition), color var(--transition);
+    z-index: 1001;
   }
-
-  .galleryCard,
-  .deadlineCard {
-    width: 100%;
-    max-width: none;
+  
+  /* when sidebar is expanded */
+  .sidenav:not(.collapsed) .openbtn {
+    right: 12px;
+    background: transparent;
+    color: var(--white);
+    border: none;
+    width: 44px;
+    height: 44px;
   }
-}
-/*  Prevents the text from breaking through the contaitner  */
-@media screen and (max-width: 768px) {
-  .sidenav {
-    width: 0;
+  
+  /* hover effect */
+  .sidenav .openbtn:hover {
+    transform: translateY(-3px);
   }
-
+  
+  /* ===========================
+     MAIN CONTENT SHIFT
+     =========================== */
   #main {
-    margin-left: 0; /* Gets rid of margin when sidenav is hidden */
+    transition: margin-left var(--transition);
+    margin-left: var(--nav-width);
+    padding: 1.25rem;
+    min-height: 100vh;
   }
-  /* fixes text sizes */
-  .tdlbanner {
-    font-size: 60px;
-    padding: 0 20px; /* Add some padding to prevent text touching edges */
+  
+  #main.nav-collapsed {
+    margin-left: var(--nav-collapsed-width);
   }
-
-  .inputBar label,
-  .categoryBar label {
-    font-size: 24px;
+  
+  /* ===========================
+     NAV / HEADER / LOGO
+     =========================== */
+  .homebar {
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding: 8px 16px;
+    background: linear-gradient(90deg, rgba(255,255,255,0.03), rgba(255,255,255,0));
+    border-bottom: 1px solid rgba(0,0,0,0.04);
   }
-}
-
-@media screen and (max-width: 480px) {
-  .tdlbanner {
-    font-size: 40px; /* Just incase of smaller screens */
+  
+  /* logo text in the nav content area (if you show it) */
+  .sidenav .logo {
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding: 10px 8px;
+    margin-bottom: 8px;
   }
-
-  .inputBar label,
-  .categoryBar label {
+  .sidenav .logo .brand {
     font-size: 18px;
+    font-weight: 800;
   }
-}
-/* End of header info */
-
-
-/* --- Enhanced Maroon-White-Grey Theme --- */
-:root {
-  --maroon: #800000;
-  --maroon-dark: #5a0000;
-  --white: #ffffff;
-  --light-grey: #f5f5f5;
-  --mid-grey: #cccccc;
-  --dark-grey: #444444;
-  --transition: 0.3s ease;
-}
-
-/* General Page Styles */
-body {
-  background-color: var(--light-grey);
-  color: var(--dark-grey);
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  line-height: 1.6;
-}
-
-/* Container Enhancements */
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 2rem;
-}
-
-/* Side Navigation */
-.sidenav {
-  background-color: var(--maroon);
-  color: var(--white);
-  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.15);
-}
-
-.sidenav a {
-  color: var(--white);
-  padding: 12px 20px;
-  text-decoration: none;
-  display: block;
-  transition: var(--transition);
-  border-radius: 8px;
-}
-
-.sidenav a:hover {
-  background-color: var(--white);
-  color: var(--maroon);
-}
-
-/* Headers */
-h1, h2, h3 {
-  color: var(--maroon);
-  font-weight: 700;
-  margin-bottom: 0.75rem;
-}
-
-/* Buttons */
-button, .btn {
-  background-color: var(--maroon);
-  color: var(--white);
-  border: none;
-  padding: 10px 18px;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: var(--transition);
-  font-weight: 600;
-}
-
-button:hover, .btn:hover {
-  background-color: var(--maroon-dark);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(128, 0, 0, 0.2);
-}
-
-/* Cards or Content Boxes */
-.card {
-  background-color: var(--white);
-  border-radius: 10px;
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
-  padding: 1.5rem;
-  margin: 1rem 0;
-  transition: var(--transition);
-}
-
-.card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
-}
-
-/* Inputs and Forms */
-input, select, textarea {
-  border: 1px solid var(--mid-grey);
-  border-radius: 6px;
-  padding: 8px 12px;
-  width: 100%;
-  transition: var(--transition);
-}
-
-input:focus, select:focus, textarea:focus {
-  border-color: var(--maroon);
-  outline: none;
-  box-shadow: 0 0 5px rgba(128, 0, 0, 0.4);
-}
-
-/* Tables */
-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 1.5rem;
-}
-
-table th {
-  background-color: var(--maroon);
-  color: var(--white);
-  padding: 10px;
-  text-align: left;
-}
-
-table td {
-  border-bottom: 1px solid var(--mid-grey);
-  padding: 10px;
-}
-
-tr:nth-child(even) {
-  background-color: var(--light-grey);
-}
-
-/* Footer */
-footer {
-  background-color: var(--maroon);
-  color: var(--white);
-  text-align: center;
-  padding: 1rem;
-  border-top: 3px solid var(--maroon-dark);
-  margin-top: 2rem;
-}
-
-/* Smooth animations for everything */
-* {
-  transition: background-color var(--transition), color var(--transition), box-shadow var(--transition);
-}
+  
+  /* ===========================
+     CARDS, GALLERY & EXHIBITS
+     =========================== */
+  .card, .galleryCard, .deadlineCard {
+    background: var(--white);
+    border-radius: 12px;
+    padding: 1rem;
+    margin-bottom: 1em;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.06);
+    transition: transform var(--transition), box-shadow var(--transition);
+  }
+  
+  .galleryWrapper {
+    flex: 1;
+    overflow-y: auto;
+    background-color: #f5f5f5;
+    border-radius: 6px;
+    padding: 6px;
+    margin-top: 8px;
+    min-height: 0;
+  }
+  
+  /* slight lift on hover */
+  .card:hover, .galleryCard:hover, .deadlineCard:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+  }
+  
+  /* exhibits wrapper cards */
+  #exhibitsWrapper {
+    display:flex;
+    flex-wrap:wrap;
+    gap:1rem;
+    padding:1rem;
+    align-items:flex-start;
+    justify-content:center;
+  }
+  #exhibitsWrapper > div {
+    width: 360px;
+    background: linear-gradient(180deg, var(--white), #fbfbfb);
+    border: 1px solid var(--mid-grey);
+    border-radius: 10px;
+    padding: 12px;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+  }
+  
+  /* input fields inside exhibit cards */
+  #exhibitsWrapper input {
+    background: #fff;
+    border: 1px solid var(--mid-grey);
+    padding: 8px 10px;
+    border-radius: 8px;
+  }
+  
+  /* delete button style */
+  #exhibitsWrapper button.delete {
+    background: transparent;
+    color: var(--maroon);
+    border: 2px solid var(--maroon);
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-weight:600;
+    align-self:flex-end;
+  }
+  #exhibitsWrapper button.delete:hover {
+    background: var(--maroon);
+    color: var(--white);
+    transform: translateY(-3px);
+  }
+  
+  /* ===========================
+     TODO / Lists / Circle
+     =========================== */
+  .todosection { width:100%; margin: 0 auto; padding: 8px 0; }
+  .lstElm {
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    width: min(800px, 90%);
+    padding: 12px;
+    background: var(--white);
+    border-radius: 10px;
+    border: 1px solid rgba(0,0,0,0.04);
+  }
+  .lstElm:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(0,0,0,0.06); }
+  
+  /* the circle label */
+  .circle {
+    width:88px; height:88px; border-radius:50%; display:flex; align-items:center; justify-content:center; color:var(--white); font-weight:700;
+    background: linear-gradient(135deg, var(--maroon), var(--maroon-dark));
+    flex:0 0 auto;
+  }
+  
+  /* ===========================
+     INPUTS, BUTTONS, TABLES
+     =========================== */
+  input, select, textarea {
+    border: 1px solid var(--mid-grey);
+    border-radius: 8px;
+    padding: 8px 12px;
+    width: 100%;
+    transition: border-color var(--transition), box-shadow var(--transition);
+  }
+  input:focus, select:focus, textarea:focus {
+    border-color: var(--maroon);
+    box-shadow: 0 6px 18px rgba(128,0,0,0.08);
+    outline: none;
+  }
+  
+  button, .btn {
+    background: var(--maroon);
+    color: var(--white);
+    border: none;
+    padding: 10px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight:700;
+  }
+  button:hover, .btn:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(128,0,0,0.12); }
+  
+  /* tables */
+  table { width:100%; border-collapse:collapse; margin-top:1rem; }
+  table th { background:var(--maroon); color:var(--white); padding:10px; text-align:left; }
+  table td { border-bottom: 1px solid var(--mid-grey); padding:10px; }
+  
+  /* footer */
+  footer { background:var(--maroon); color:var(--white); text-align:center; padding:1rem; border-top:3px solid var(--maroon-dark); margin-top:2rem; }
+  
+  /* ===========================
+     RESPONSIVE BREAKPOINTS
+     =========================== */
+  @media (max-width: 992px) {
+    :root { --nav-width: 220px; }
+    #exhibitsWrapper > div { width:320px; }
+  }
+  
+  @media (max-width: 768px) {
+    .sidenav { position:fixed; z-index:999; } /* keep it above content */
+    .container { padding:1rem; }
+    /* on small screens prefer collapsed nav by default */
+    .sidenav { width: var(--nav-collapsed-width); }
+    #main { margin-left: var(--nav-collapsed-width); }
+    .sidenav:not(.collapsed) .openbtn { right: 10px; }
+  }
+  
+  @media (max-width: 480px) {
+    #exhibitsWrapper > div { width:100%; }
+    .circle { width:64px; height:64px; font-size:12px; }
+  }
+  
+  /* smooth transitions for general visuals */
+  *{ transition: background-color var(--transition), color var(--transition), box-shadow var(--transition), transform var(--transition); }
+  
