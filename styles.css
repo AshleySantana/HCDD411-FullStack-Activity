@@ -380,3 +380,144 @@ body {
   }
 }
 /* End of header info */
+
+
+/* --- Enhanced Maroon-White-Grey Theme --- */
+:root {
+  --maroon: #800000;
+  --maroon-dark: #5a0000;
+  --white: #ffffff;
+  --light-grey: #f5f5f5;
+  --mid-grey: #cccccc;
+  --dark-grey: #444444;
+  --transition: 0.3s ease;
+}
+
+/* General Page Styles */
+body {
+  background-color: var(--light-grey);
+  color: var(--dark-grey);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+}
+
+/* Container Enhancements */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+/* Side Navigation */
+.sidenav {
+  background-color: var(--maroon);
+  color: var(--white);
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.15);
+}
+
+.sidenav a {
+  color: var(--white);
+  padding: 12px 20px;
+  text-decoration: none;
+  display: block;
+  transition: var(--transition);
+  border-radius: 8px;
+}
+
+.sidenav a:hover {
+  background-color: var(--white);
+  color: var(--maroon);
+}
+
+/* Headers */
+h1, h2, h3 {
+  color: var(--maroon);
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+}
+
+/* Buttons */
+button, .btn {
+  background-color: var(--maroon);
+  color: var(--white);
+  border: none;
+  padding: 10px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: var(--transition);
+  font-weight: 600;
+}
+
+button:hover, .btn:hover {
+  background-color: var(--maroon-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(128, 0, 0, 0.2);
+}
+
+/* Cards or Content Boxes */
+.card {
+  background-color: var(--white);
+  border-radius: 10px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+  margin: 1rem 0;
+  transition: var(--transition);
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+}
+
+/* Inputs and Forms */
+input, select, textarea {
+  border: 1px solid var(--mid-grey);
+  border-radius: 6px;
+  padding: 8px 12px;
+  width: 100%;
+  transition: var(--transition);
+}
+
+input:focus, select:focus, textarea:focus {
+  border-color: var(--maroon);
+  outline: none;
+  box-shadow: 0 0 5px rgba(128, 0, 0, 0.4);
+}
+
+/* Tables */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1.5rem;
+}
+
+table th {
+  background-color: var(--maroon);
+  color: var(--white);
+  padding: 10px;
+  text-align: left;
+}
+
+table td {
+  border-bottom: 1px solid var(--mid-grey);
+  padding: 10px;
+}
+
+tr:nth-child(even) {
+  background-color: var(--light-grey);
+}
+
+/* Footer */
+footer {
+  background-color: var(--maroon);
+  color: var(--white);
+  text-align: center;
+  padding: 1rem;
+  border-top: 3px solid var(--maroon-dark);
+  margin-top: 2rem;
+}
+
+/* Smooth animations for everything */
+* {
+  transition: background-color var(--transition), color var(--transition), box-shadow var(--transition);
+}

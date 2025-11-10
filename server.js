@@ -10,16 +10,6 @@ app.use(cors()); //enables  for all cores
 app.use(express.json()); //middleware to parse JSON bodies
 app.use(express.static(path.join(__dirname, "public"))); //creating the app
 
-// app.post("/api/exhibition", (req, res) => {
-//   // Logic to create an exhibition based on curator's notes
-//   res.json({ message: "Exhibition created successfully" });
-// });
-// app.post("/api/artwork", (req, res) => {
-//   // Logic to add artwork
-//   res.json({ message: "Artwork added successfully" });
-//   //fs.writeFileSync('artwork.json', JSON.stringify(req.body)); //saves the artwork to a text file
-// });
-
 // Chris: deadlines and to do
 app.get("/data", (req, res) => {
   // define the link
@@ -69,9 +59,8 @@ app.delete("/api/deadlines/:id", (req, res) => {
 });
 
 //Ashley: EXHIBITS
-// ---------- EXHIBIT PROJECTS API ---------- //
 
-// Path to your data file
+// Path to my data file
 const exhibitsPath = path.join(__dirname, "exhibits.json");
 
 // GET - Retrieve all exhibit projects

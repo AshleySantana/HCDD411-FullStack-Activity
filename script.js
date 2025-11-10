@@ -146,44 +146,6 @@ const newItem = {
       console.error("Error loading deadlines:", error);
     });
 
-
-  // Exhibit page feature
-  function createExhibit() {
-    // calling all of my info
-    const exhibitName = document.querySelector('#exhibitInputName').value;
-    const exhibitTheme = document.querySelector('#exhibitInputTheme').value;
-    const exhibitDateCreated = document.querySelector('#exhibitInputDateCreated').value;
-
-    const newElement = document.createElement("div");
-
-    const textName = document.createElement("input");
-    textName.classList.add("exhibitName");
-    textName.value = exhibitName;
-
-    const textTheme = document.createElement("input");
-    textTheme.classList.add("exhibitTheme");
-    textTheme.value = exhibitTheme;
-
-    const textDateCreated = document.createElement("input");
-    textDateCreated.classList.add("exhibitDateCreated");
-    textDateCreated.value = exhibitDateCreated;
-
-    const deleteButton = document.createElement("button");
-    deleteButton.textContent = "Delete";
-    deleteButton.classList.add("delete");
-
-    deleteButton.addEventListener("click", () => {
-      newElement.remove();
-    });
-
-    newElement.appendChild(textName);
-    newElement.appendChild(textTheme);
-    newElement.appendChild(textDateCreated);
-    newElement.appendChild(deleteButton);
-
-    document.querySelector("#exhibitsWrapper").appendChild(newElement);
-  }
-
   // Optional: Save and load modules locally
   
 const saveModule = () => {
@@ -212,3 +174,46 @@ const saveModule = () => {
   // document.querySelector("#btn_load").addEventListener("click", loadModule);
 });
 
+ // Create exhibit page feature
+ function createExhibit(){
+  // calling all of my info
+
+  let exhibitName = document.querySelector('#exhibitInputName').value
+  let exhibitTheme = document.querySelector('#exhibitInputTheme').value
+  let exhibitDateCreated = document.querySelector('#exhibitInputDateCreated').value
+  
+  let data = {
+    name: exhibitName,
+    theme: exhibitTheme,
+    date: exhibitDateCreated
+  }
+
+  let newElement = document.createElement("div")
+
+  let textName = document.createElement("input")
+  textName.classList.add("exhibitName")
+  textName.value = exhibitName
+
+  let textTheme = document.createElement("input")
+  textTheme.classList.add("exhibitTheme")
+  textTheme.value = exhibitTheme
+
+  let textDateCreated = document.createElement("input")
+  textDateCreated.classList.add("exhibitDateCreated")
+  textDateCreated.value = exhibitDateCreated
+
+  let deleteButton = document.createElement("button")
+  deleteButton.textContent = "Delete"
+  deleteButton.classList.add("delete")
+  
+  newElement.appendChild(textName)
+  newElement.appendChild(textTheme)
+  newElement.appendChild(textDateCreated)
+  newElement.appendChild(deleteButton)
+
+  deleteButton.addEventListener("click",()=> {
+      deleteButton.parentElement.remove()
+  })
+
+  document.querySelector("#exhibitsWrapper").appendChild(newElement)
+}
