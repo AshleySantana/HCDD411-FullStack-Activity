@@ -65,6 +65,7 @@ const exhibitsPath = path.join(__dirname, "exhibits.json");
 
 // GET - Retrieve all exhibit projects
 app.get("/api/exhibits", (req, res) => {
+  console.log("Get is working")
   fs.readFile(exhibitsPath, "utf8", (err, data) => {
     if (err) {
       return res.status(500).json({ message: "Error reading exhibits file" });
@@ -125,6 +126,9 @@ app.put("/api/exhibits/:id", (req, res) => {
 // DELETE - Remove an exhibit project by ID
 app.delete("/api/exhibits/:name", (req, res) => {
   const exhibitName = req.params.name;
+
+  console.log("Deleting exhibit:", exhibitName);
+
   fs.readFile(exhibitsPath, "utf8", (err, data) => {
     if (err) return res.status(500).json({ message: "Error reading exhibits file." });
 
@@ -145,8 +149,6 @@ app.delete("/api/exhibits/:name", (req, res) => {
     });
   });
   console.log(exhibitName)
-
-  res.json({ message: `Exhibit ${exhibitName} deleted.` });
 });
 
 app.listen(PORT, () => { 

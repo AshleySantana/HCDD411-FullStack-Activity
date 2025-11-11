@@ -158,8 +158,8 @@ document.addEventListener("DOMContentLoaded", () => {
         })
         .catch(err => console.error("Error creating exhibit:", err));
       });
-    } else {
-        console.log("didn't work")
     }
   });
+
+  
   

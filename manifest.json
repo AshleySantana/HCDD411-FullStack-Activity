@@ -4,7 +4,7 @@
     "description": "Art Curator Design Portal",
     "start_url": "/",
     "display": "standalone",
-    "theme_color": "#96BEE6",
+    "theme_color": "#8a8a8a",
     "icons": [
         {
             "src": "images/logo.png",

@@ -141,14 +141,14 @@
   /* ===========================
      MAIN CONTENT SHIFT
      =========================== */
-  #main {
+  .main {
     transition: margin-left var(--transition);
     margin-left: var(--nav-width);
     padding: 1.25rem;
     min-height: 100vh;
   }
   
-  #main.nav-collapsed {
+  .main.nav-collapsed {
     margin-left: var(--nav-collapsed-width);
   }
   
@@ -233,8 +233,17 @@
     border-radius: 8px;
   }
   
-  /* delete button style */
+  /* delete and select button style */
   #exhibitsWrapper button.delete {
+    background: transparent;
+    color: var(--maroon);
+    border: 2px solid var(--maroon);
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-weight:600;
+    align-self:flex-end;
+  }
+  #exhibitsWrapper button.select {
     background: transparent;
     color: var(--maroon);
     border: 2px solid var(--maroon);
@@ -247,6 +256,15 @@
     background: var(--maroon);
     color: var(--white);
     transform: translateY(-3px);
+  }
+  #exhibitsWrapper button.select:hover {
+    background: var(--maroon);
+    color: var(--white);
+    transform: translateY(-3px);
+  }
+  .buttonWrapper{
+    display: flex;
+    justify-content: space-between;
   }
   
   /* ===========================

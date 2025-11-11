@@ -21,32 +21,21 @@
         </div>
         <span class="openbtn" onclick="openNav()">open</span>
       <!-- end of header -->
-      
-      <div id="main" class="container">
-        
-        <h1>Your Exhibits</h1>
 
-        <label for="exhibitInputName">Name: </label>
-        <input type="text" id="exhibitInputName"></input>
-        <br>
+        <div id="main" class="container">
+          <select id="chooseArtworks" onchange="selectedArt()">
+            <option></option>
+          </select>
 
-        <label for="exhibitInputTheme">Theme: </label>
-        <input type="text" id="exhibitInputTheme"></input>
-        <br>
-
-        <label for="exhibitInputDateCreated">Date Created: </label>
-        <input type="text" id="exhibitInputDateCreated"></input>
-        <br><br>
-        
-        <button onclick="createExhibit()" id="exhibitCreateButton">Create!</button>
-
-        <div class="exhibitsWrapper" id="exhibitsWrapper"></div>
-
-        <h1 id="exhibit-title"></h1>
-        <p><strong>Artist:</strong> <span id="exhibit-artist"></span></p>
-        <p id="exhibit-description"></p>
-
-      </div>
+          <table id="artworkTable">
+            <tr>
+                <td>Title</td>
+                <td>Image</td>
+                <td>Artist</td>
+                <td>Year</td>
+            </tr>
+          </table>
+        </div>
       
     <script src="script.js" defer></script>
     <script src="client.js" defer></script>

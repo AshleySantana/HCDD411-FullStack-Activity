@@ -169,9 +169,6 @@ const saveModule = () => {
     });
   };
 
-  // Uncomment if you want to use these buttons
-  // document.querySelector("#btn_save").addEventListener("click", saveModule);
-  // document.querySelector("#btn_load").addEventListener("click", loadModule);
 });
 
  // Create exhibit page feature
@@ -199,31 +196,43 @@ const saveModule = () => {
 function appendExhibit(exhibit){
   console.log(exhibit)
   let newElement = document.createElement("div")
+  let buttonWrapper = document.createElement("div")
+  buttonWrapper.classList.add("buttonWrapper")
 
-  let textName = document.createElement("p")
+  let textName = document.createElement("div")
   textName.classList.add("exhibitName")
-  textName.value = exhibit.name
+  textName.textContent = exhibit.name
 
-  let textTheme = document.createElement("p")
+  let textTheme = document.createElement("div")
   textTheme.classList.add("exhibitTheme")
-  textTheme.value = exhibit.theme
+  textTheme.textContent = exhibit.theme
 
-  let textDateCreated = document.createElement("p")
+  let textDateCreated = document.createElement("div")
   textDateCreated.classList.add("exhibitDateCreated")
-  textDateCreated.value = exhibit.date
+  textDateCreated.textContent = exhibit.date
 
   let deleteButton = document.createElement("button")
   deleteButton.textContent = "Delete"
   deleteButton.classList.add("delete")
+
+  let selectButton = document.createElement("button")
+  selectButton.textContent = "Select"
+  selectButton.classList.add("select")
+
+  selectButton.addEventListener("click", function() {
+    window.location.href = "exhibitsDetailPage.html";
+  });
   
   newElement.appendChild(textName)
   newElement.appendChild(textTheme)
   newElement.appendChild(textDateCreated)
-  newElement.appendChild(deleteButton)
+
+  newElement.appendChild(buttonWrapper)
+  buttonWrapper.appendChild(deleteButton)
+  buttonWrapper.appendChild(selectButton)
 
   deleteButton.addEventListener("click",()=> {
     deleteExhibit(exhibit.name, deleteButton.parentElement);
-     
   })
 
   document.querySelector("#exhibitsWrapper").appendChild(newElement)
@@ -274,6 +283,8 @@ function deleteExhibit(exhibitName, elementToRemove) {
 }
 
 // Fetch and display exhibits when page loads
-getExhibit();
+document.addEventListener("DOMContentLoaded", () => {
+  getExhibit();
+});
 
 
