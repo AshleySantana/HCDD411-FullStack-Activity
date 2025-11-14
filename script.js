@@ -60,10 +60,42 @@ function addDeadlineItem(text, category, dueDate, id) {
     const label = document.createElement("label");
     label.setAttribute("for", "status");
 
+const editBtn = document.createElement("button");
+  editBtn.textContent = "Edit";
+  editBtn.className = "edit-btn";
+
+  editBtn.addEventListener("click", () => {
+    document.getElementById("editModal").style.display = "flex";
+    document.getElementById("editTitle").value = titleSpan.textContent;
+
+    document.getElementById("saveEdit").onclick = () => {
+      const newTitle = document.getElementById("editTitle").value.trim();
+      if (newTitle) {
+        titleSpan.textContent = newTitle;
+
+        // ✅ PUT request to update on server
+        fetch(`http://localhost:3002/api/deadlines/${id}`, {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ title: newTitle })
+        })
+        .then(res => res.json())
+        .then(data => console.log("Updated:", data))
+        .catch(err => console.error("Update error:", err));
+      }
+      document.getElementById("editModal").style.display = "none";
+    };
+
+    document.getElementById("cancelEdit").onclick = () => {
+      document.getElementById("editModal").style.display = "none";
+    };
+  });
+
     wrapper.appendChild(circle);
     wrapper.appendChild(ltext);
     wrapper.appendChild(checkbox);
     wrapper.appendChild(label);
+    wrapper.appendChild(editBtn);
 
     listItem.appendChild(wrapper);
     list.appendChild(listItem);
@@ -286,5 +318,4 @@ function deleteExhibit(exhibitName, elementToRemove) {
 document.addEventListener("DOMContentLoaded", () => {
   getExhibit();
 });
-
 

@@ -28,18 +28,42 @@ app.get("/api/deadlines", (req, res) => {
         res.json(JSON.parse(data));
     });
 });
+
 app.post("/api/deadlines", (req, res) => {
-    // Logic to create a new deadline
-    const newItem = req.body;
-    fs.readFile('listInfo.json', 'utf8', (err, data) => {
-        if (err) return res.status(500).json({ message: "Error reading deadlines" });
-        const json = JSON.parse(data);
-        json.listItems.push(newItem);
-        fs.writeFile('listInfo.json', JSON.stringify(json), (err) => {
-            if (err) return res.status(500).json({ message: "Error saving deadline" });
-            res.json(newItem); 
-        });
+  const newItem = req.body;
+  fs.readFile('listInfo.json', 'utf8', (err, data) => {
+    if (err) return res.status(500).json({ message: "Error reading deadlines" });
+
+    const json = JSON.parse(data);
+    json.listItems.push(newItem);
+
+    fs.writeFile('listInfo.json', JSON.stringify(json, null, 2), (err) => {
+      if (err) return res.status(500).json({ message: "Error saving deadline" });
+      res.json(newItem); // ✅ Return the full item
     });
+  });
+
+
+app.put("/api/deadlines/:id", (req, res) => {
+  const idToUpdate = req.params.id;
+  const updatedData = req.body;
+
+  fs.readFile("listInfo.json", "utf8", (err, data) => {
+    if (err) return res.status(500).json({ message: "Error reading deadlines" });
+
+    const json = JSON.parse(data);
+    const index = json.listItems.findIndex(item => item.id === idToUpdate);
+    if (index === -1) return res.status(404).json({ message: "Deadline not found" });
+
+    json.listItems[index] = { ...json.listItems[index], ...updatedData };
+
+    fs.writeFile("listInfo.json", JSON.stringify(json, null, 2), (err) => {
+      if (err) return res.status(500).json({ message: "Error saving updated deadline" });
+      res.json(json.listItems[index]);
+    });
+  });
+});
+
 app.delete("/api/deadlines/:id", (req, res) => {
   const idToDelete = req.params.id;
 
@@ -55,6 +79,7 @@ app.delete("/api/deadlines/:id", (req, res) => {
     });
   });
 });
+
 
 });
 
